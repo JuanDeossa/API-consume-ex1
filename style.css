@@ -1,0 +1,57 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;   
+}
+html{
+    font-size: 6.25%;
+}
+body{
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(46, 142, 206);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+h1 {
+    font-size: 30rem;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 900;
+}
+#img{
+    height: 70vh;
+    border-radius: 40px;
+    box-shadow: 4px 4px 1px rgb(61, 179, 7), -4px -4px 1px rgb(117, 86, 202);
+    max-width: 700px;
+    width: 80%;
+}
+
+
+#myButton {
+	box-shadow: 3px 4px 0px 0px #899599;
+	background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+	background-color:#ededed;
+	border-radius:15px;
+	border:1px solid #d6bcd6;
+	display:inline-block;
+	cursor:pointer;
+	color:#2d2df0;
+	font-family:"Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif";
+    font-style: italic;
+    font-weight: 900;
+	font-size:25px;
+	padding:7px 25px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #e1e2ed;
+}
+#myButton:hover {
+	background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+	background-color:#bab1ba;
+}
+#myButton:active {
+	position:relative;
+	top:1px;
+}
+
