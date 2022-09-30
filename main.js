@@ -33,8 +33,9 @@ async function initialRandomRender(path) {
         });
         const addButtons = document.querySelectorAll(".add-btn")
         addButtons.forEach(i=>{
-            i.addEventListener("click",()=>{
+            i.addEventListener("click",async()=>{
                 console.log(`Adding${i.dataset.id}`)
+                addFavItem(i.dataset.id)
             })
         })
         const changeButtons = document.querySelectorAll(".change-btn")
@@ -75,6 +76,27 @@ async function renderFavourites(path) {
                 getFavourites(API_FAV+API_key)
             })
         })
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
+async function addFavItem(id) {
+    const path = API_URLs.getAddFavPath
+    const response = await fetch(path,{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json",
+        },
+        body: JSON.stringify({
+            image_id:id
+        })
+    })
+    try {
+        const data = await response.json()
+        console.log(data);
+        console.log("Added");
+        renderFavourites(API_URLs.getAddFavPath)
     } catch (error) {
         throw new Error(error)
     }
