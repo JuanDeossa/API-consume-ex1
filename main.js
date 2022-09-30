@@ -61,7 +61,7 @@ async function renderFavourites(path) {
         data.forEach((element,index) => {
             favsCointainer.innerHTML += `
             <div class="card">
-                <p>Animal ${index+1}:<br>${element.name}</p>
+                <p>Favourite cat ${index+1}</p>
                 <img id="img1" src="${element.image.url}" alt="Cat Image">
                 <button class="btn del-btn" data-id="${element.id}">Delete from favourites</button>
             </div>
@@ -71,9 +71,7 @@ async function renderFavourites(path) {
         butons.forEach(i=>{
             i.addEventListener("click",()=>{
                 console.log(`Deleting ${i.dataset.id}`)
-                deleteFav(deletePath(i.dataset.id))
-                render()
-                getFavourites(API_FAV+API_key)
+                delFavItem(API_URLs.delFavPath(i.dataset.id))
             })
         })
     } catch (error) {
@@ -96,6 +94,23 @@ async function addFavItem(id) {
         const data = await response.json()
         console.log(data);
         console.log("Added");
+        renderFavourites(API_URLs.getAddFavPath)
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
+async function delFavItem(path) {
+    const response = await fetch(path,{
+        method:"DELETE",
+        headers:{
+            "Content-Type":"application/json",
+        }
+    })
+    try {
+        const data = await response.json()
+        console.log(data);
+        console.log("Deleted");
         renderFavourites(API_URLs.getAddFavPath)
     } catch (error) {
         throw new Error(error)
