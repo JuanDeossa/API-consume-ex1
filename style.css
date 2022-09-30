@@ -52,6 +52,18 @@ h1 {
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: 900;
 }
+.title{
+    background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+    background-color:#ededed;
+    border-radius:5px;
+    display:inline-block;
+    color:#d61a1a;
+    font-family:"Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif";
+    font-weight: 900;
+    font-size:30px;
+    padding:7px 65px;
+    text-decoration:none;
+}
 img{
     height: 20vh;
     border-radius: 20px;
@@ -60,7 +72,7 @@ img{
     width: 20vh;
 }
 
-.btn {
+.btn{
 	box-shadow: 3px 4px 0px 0px #899599;
 	background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
 	background-color:#ededed;
