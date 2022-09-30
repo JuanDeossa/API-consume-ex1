@@ -48,8 +48,41 @@ async function initialRandomRender(path) {
     }
 }
 
+async function renderFavourites(path) {
+    const response = await fetch(path)
+    try {
+        const data = await response.json()
+        console.log("Favs");
+        console.log(data);
+        while (favsCointainer.firstChild) {
+            favsCointainer.removeChild(favsCointainer.firstChild);
+        }
+        data.forEach((element,index) => {
+            favsCointainer.innerHTML += `
+            <div class="card">
+                <p>Animal ${index+1}:<br>${element.name}</p>
+                <img id="img1" src="${element.image.url}" alt="Cat Image">
+                <button class="btn del-btn" data-id="${element.id}">Delete from favourites</button>
+            </div>
+            `
+        });
+        const butons = document.querySelectorAll(".del-btn")
+        butons.forEach(i=>{
+            i.addEventListener("click",()=>{
+                console.log(`Deleting ${i.dataset.id}`)
+                deleteFav(deletePath(i.dataset.id))
+                render()
+                getFavourites(API_FAV+API_key)
+            })
+        })
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
 async function start() {
     await initialRandomRender(API_URLs.getImages)
+    await renderFavourites(API_URLs.getAddFavPath)
 }
 
 window.addEventListener("load",()=>start())
