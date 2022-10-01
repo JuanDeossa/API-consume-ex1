@@ -20,12 +20,12 @@ body{
     padding-left: 50px;
     padding-right: 50px;
 }
-#favs-container{
+.cf{
     padding: 30px;
     border: 1px dotted #000;
     border-radius: 20px;
 }
-.container{
+#favs-container,.container{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -58,6 +58,8 @@ h1 {
     font-weight: 900;
 }
 .title{
+    text-align: center;
+    margin-top: 30px;
     background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
     background-color:#ededed;
     border-radius:5px;

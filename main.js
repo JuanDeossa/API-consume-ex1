@@ -25,6 +25,7 @@ async function obtainImages(path){
 const cardsCointainer = document.getElementById("cards-container")
 const favsCointainer = document.getElementById("favs-container")
 const image1 = document.getElementById("img1")
+const title = document.querySelector(".title")
 
 function renderGallery(array) {
     while (cardsCointainer.firstChild) {
@@ -68,6 +69,13 @@ async function replaceSingleItem(path,id) {
 }
 
 async function renderFavourites(path) {
+    await updateFavsLength()
+    if (favsLength===0) {
+        title.innerHTML="Please, choose your Favourite Cats"
+        favsCointainer.removeAttribute("class","cf")
+    }else{
+        title.innerHTML="Favourite Cats Collection"
+    }
     const response = await fetch(path)
     try {
         const data = await response.json()
@@ -98,7 +106,6 @@ async function addFavItem(id) {
     const path = API_URLs.getAddFavPath
     await updateFavsLength()
     if (favsLength<3) {
-        console.log("yes");
         const response = await fetch(path,{
             method:"POST",
             headers:{
@@ -136,8 +143,8 @@ async function delFavItem(path) {
 
 async function start() {
     await obtainImages(API_URLs.getInitialImages) 
-    await renderGallery(gallery)
     await renderFavourites(API_URLs.getAddFavPath)
+    await renderGallery(gallery)
 }
 
 window.addEventListener("load",()=>start())
