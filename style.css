@@ -20,6 +20,11 @@ body{
     padding-left: 50px;
     padding-right: 50px;
 }
+#favs-container{
+    padding: 30px;
+    border: 1px dotted #000;
+    border-radius: 20px;
+}
 .container{
     display: flex;
     flex-direction: row;

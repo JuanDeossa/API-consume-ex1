@@ -10,6 +10,7 @@ const API_URLs = {
 }
 
 let gallery 
+let favsLength
 
 async function obtainImages(path){
     const response = await fetch(path)
@@ -95,20 +96,26 @@ async function renderFavourites(path) {
 
 async function addFavItem(id) {
     const path = API_URLs.getAddFavPath
-    const response = await fetch(path,{
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json",
-        },
-        body: JSON.stringify({
-            image_id:id
+    await updateFavsLength()
+    if (favsLength<3) {
+        console.log("yes");
+        const response = await fetch(path,{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json",
+            },
+            body: JSON.stringify({
+                image_id:id
+            })
         })
-    })
-    try {
-        const data = await response.json()
-        renderFavourites(API_URLs.getAddFavPath)
-    } catch (error) {
-        throw new Error(error)
+        try {
+            const data = await response.json()
+            renderFavourites(API_URLs.getAddFavPath)
+        } catch (error) {
+            throw new Error(error)
+        }
+    } else {
+        alert("You only can get 3 favourite cats")
     }
 }
 
@@ -134,6 +141,19 @@ async function start() {
 }
 
 window.addEventListener("load",()=>start())
+
+async function updateFavsLength() {
+    const response = await fetch(API_URLs.getAddFavPath)
+    try {
+        const array = await response.json()
+        favsLength = array.length
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
+
+
 
 
 
